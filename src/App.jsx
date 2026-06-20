@@ -130,9 +130,12 @@ function Hero() {
 
       <div className="hero-image-wrap">
         <img
-          src="/images/hero-photo.jpg"
+          src="https://placehold.co/900x1200/png"
           alt="Portfolio hero"
           className="hero-image"
+          width="900"
+          height="1200"
+          fetchPriority="high"
         />
       </div>
     </section>
@@ -202,7 +205,7 @@ function Projects() {
             <div className="project-meta">
               <p className="project-type">{project.type}</p>
               <h3>{project.name}</h3>
-              <img src={project.image} alt={project.name} />
+              <img src={project.image} alt={project.name} width="800" height="600" loading="lazy" />
             </div>
 
             <div className="project-detail">
@@ -384,8 +387,8 @@ function Photography() {
 
       <div className="photo-grid">
         {filteredPhotos.map((photo) => (
-          <figure className="photo-item" key={photo.src}>
-            <img src={photo.src} alt={photo.title} />
+          <figure className="photo-item" key={photo.title}>
+            <img src={photo.src} alt={photo.title} width="800" height="600" loading="lazy" />
             <figcaption>
               <strong>{photo.title}</strong>
               <span>{photo.caption}</span>
@@ -431,8 +434,15 @@ function TravelLog() {
                 <p>{travel.summary}</p>
 
                 <div className="travel-images">
-                  {travel.images.map((image) => (
-                    <img key={image} src={image} alt={`${travel.place} record`} />
+                  {travel.images.map((image, index) => (
+                    <img
+                      key={`${travel.place}-${index}`}
+                      src={image}
+                      alt={`${travel.place} record ${index + 1}`}
+                      width="960"
+                      height="600"
+                      loading="lazy"
+                    />
                   ))}
                 </div>
 

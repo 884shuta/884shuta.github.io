@@ -1,3 +1,5 @@
+const placeholderImage = (width, height) => `https://placehold.co/${width}x${height}/png`;
+
 export const navItems = [
   { id: "about", label: "About" },
   { id: "focus", label: "Focus" },
@@ -54,7 +56,7 @@ export const projects = [
   {
     name: "病院共同の姿勢判別アプリ",
     type: "Medical App / Machine Learning",
-    image: "/images/posture-app.jpg",
+    image: placeholderImage(800, 600),
     summary:
       "整形外科の医師が行っている小中学生向けの運動機能チェックを支援するため、複数の姿勢判別をアプリで自動化するAndroidアプリを開発しました。",
     role: [
@@ -75,7 +77,7 @@ export const projects = [
   {
     name: "MusicDeck",
     type: "iOS / macOS Personal App",
-    image: "/images/musicdeck.jpg",
+    image: placeholderImage(800, 600),
     summary:
       "Mac上の音楽操作をiPhoneから手軽に行えるようにするため、iPhoneをMacの音楽リモコンのように使えるアプリを個人開発しました。",
     role: [
@@ -97,7 +99,7 @@ export const projects = [
   {
     name: "CarGo Now",
     type: "Business Plan",
-    image: "/images/cargo-now.jpg",
+    image: placeholderImage(800, 600),
     summary:
       "自家用車の空きスペースを活用した配送サービスを企画しました。既存の移動や車の空き容量を活用し、地域の物流課題の改善を目指しました。",
     role: [
@@ -124,7 +126,7 @@ export const projects = [
   {
     name: "Cook With",
     type: "Business Plan / App Concept",
-    image: "/images/cookwith.jpg",
+    image: placeholderImage(800, 600),
     summary:
       "学生の自炊継続や食材管理の課題に着目し、学生向けの食材配送・自炊支援アプリを企画しました。",
     role: [
@@ -151,7 +153,7 @@ export const projects = [
   {
     name: "メガネ型会話記憶補助AIシステム",
     type: "Research / HMD / AI",
-    image: "/images/memoryhint.jpg",
+    image: placeholderImage(800, 600),
     summary:
       "会話内容を記録し、必要な情報を後から検索・提示するメガネ型会話記憶補助AIシステムについて研究しています。",
     role: [
@@ -254,25 +256,25 @@ export const skills = [
 
 export const photos = [
   {
-    src: "/images/photo-01.jpg",
+    src: placeholderImage(800, 600),
     title: "夕方の街",
     category: "Daily",
     caption: "移動中に見つけた光や空気感を残した一枚。"
   },
   {
-    src: "/images/photo-02.jpg",
+    src: placeholderImage(800, 600),
     title: "旅先の風景",
     category: "Travel",
     caption: "初めて訪れた場所で感じた雰囲気を記録。"
   },
   {
-    src: "/images/photo-03.jpg",
+    src: placeholderImage(800, 600),
     title: "大学生活の記録",
     category: "University",
     caption: "研究や開発だけでなく、日常の時間も大切にしている。"
   },
   {
-    src: "/images/photo-04.jpg",
+    src: placeholderImage(800, 600),
     title: "イベントの記録",
     category: "Event",
     caption: "活動の中で出会った人や場の雰囲気を写真として残す。"
@@ -283,7 +285,7 @@ export const travels = [
   {
     place: "Singapore",
     date: "Overseas Entrepreneurship Program",
-    images: ["/images/travel-singapore-01.jpg", "/images/travel-singapore-02.jpg"],
+    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
     summary:
       "大学代表として参加したアントレプレナー研修で訪問。企業見学やアイデアソンを通して、海外のビジネス環境や課題解決の考え方に触れました。",
     detail:
@@ -292,7 +294,7 @@ export const travels = [
   {
     place: "Hong Kong",
     date: "Overseas Entrepreneurship Program",
-    images: ["/images/travel-hongkong-01.jpg", "/images/travel-hongkong-02.jpg"],
+    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
     summary:
       "海外アントレプレナー研修で訪問。異なる文化や都市の雰囲気に触れながら、事業やサービスが社会の中でどのように受け入れられているかを考えるきっかけになりました。",
     detail:
@@ -301,7 +303,7 @@ export const travels = [
   {
     place: "Japan Travel",
     date: "Daily Travel Log",
-    images: ["/images/travel-japan-01.jpg", "/images/travel-japan-02.jpg"],
+    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
     summary:
       "国内の旅行や移動の記録。風景、街、食事、イベントなどを写真と短い文章で残しています。",
     detail:
