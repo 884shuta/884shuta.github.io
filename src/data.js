@@ -13,14 +13,14 @@ export const navItems = [
 
 export const profile = {
   name: "Hayashi Shuta",
-  title: "Information Systems / Swift / XR / HCI / AI",
+  title: " HCI / Swift / XR / AI",
   heroImage: "/images/hero-portfolio.png",
   catchCopy:
-    "技術と体験設計の両方から、人の記憶・行動・生活を支えるプロダクトを考えています。",
+    "アイデア力と技術力で身近な課題を解決する",
   description:
-    "大分大学の情報系学部で学びながら、Swiftを用いたアプリ開発、XR・HCI領域の研究、ビジネスプランコンテスト、医療現場と連携したアプリ開発などに取り組んでいます。技術そのものだけでなく、それが人の行動や体験をどう変えるかに関心があります。",
+    "知覚を用いたXR・HCI領域の研究、Swiftを用いたアプリ開発、ビジネスプランコンテスト、医療現場と連携したアプリ開発などに取り組んでいます。アイデアと技術で課題を解決することを目指しています。",
   details: [
-    ["University", "Oita University"],
+    ["University", "Yokohama National University"],
     ["Field", "Information Systems / HCI / XR"],
     ["Interests", "Swift, iOS, macOS, XR, AI, UX"],
     ["English", "TOEIC 865（Listening 450 / Reading 415）"],
@@ -72,7 +72,7 @@ export const projects = [
       "服装や背景、撮影条件の違いによる影響を考慮しました。",
       "データ収集と改善を繰り返し、精度を最大約90%まで向上させました。"
     ],
-    tech: ["Flutter", "Android", "Python", "機械学習", "骨格認識", "SVM", "CSV"]
+    tech: ["Flutter", "Android", "Python", "機械学習", "SVM", "CSV"]
   },
   {
     name: "MusicDeck",
@@ -90,10 +90,9 @@ export const projects = [
       "音楽操作機能の実装"
     ],
     points: [
-      "同じWi-Fi環境ではTCP通信を利用しました。",
-      "それ以外の環境ではMultipeer Connectivityを利用しました。",
-      "利用環境に応じてMacとiPhoneを接続できるようにしました。",
-      "見た目のわかりやすさと通信量のバランスを考えました。"
+      "TCP通信やMultipeer Connectivityを利用し様々な環境に対応しました。",
+      "見た目のわかりやすさと通信量のバランスを考えました。",
+      "カスタマイズ性と便利さを共存させました。"
     ],
     tech: ["Swift", "SwiftUI", "iOS", "macOS", "TCP", "Multipeer Connectivity"]
   },
@@ -115,11 +114,11 @@ export const projects = [
     points: [
       "すでに存在する移動や空きスペースを活用する発想を取り入れました。",
       "地域課題と利用者のメリットを両立させる設計を考えました。",
-      "大分大学ビジネスプランコンテストで優勝しました。"
+      "大分大学ビジネスプランコンテストで優勝しました。(2024)"
     ],
     tech: ["Business Plan", "Logistics", "Presentation", "Team Management"],
     presentation: {
-      title: "CarGo Now! プレゼン資料",
+      title: "CarGo Now! プレゼン資料(読み込みには時間がかかります。)",
       src:
         "https://1drv.ms/p/c/810bf9147a4c14a8/IQSG8adt8JRBQpmfzpz4xj9XAbCImfdL05j_R73kt8rQNGI?em=2&wdAr=1.7777777777777777"
     }
@@ -143,11 +142,11 @@ export const projects = [
       "学生の生活課題を起点にサービスを設計しました。",
       "食材を届けるだけでなく、継続的に自炊する仕組みを考えました。",
       "在庫管理や栄養管理まで含めた体験を設計しました。",
-      "大分大学ビジネスプランコンテストで準優勝、企業賞を受賞しました。"
+      "大分大学ビジネスプランコンテストで準優勝、企業賞を受賞しました(2025)。"
     ],
     tech: ["Business Plan", "UI Concept", "Presentation", "User Research"],
     presentation: {
-      title: "Cook With プレゼン資料",
+      title: "Cook With プレゼン資料(読み込みには時間がかかります。)",
       src:
         "https://1drv.ms/p/c/810bf9147a4c14a8/IQTjF3uk-CTxT7wHS-XV2uOVAYmiQAUTi5bxoF3AADruZ6c?em=2&wdAr=1.7777777777777777"
     }
@@ -158,7 +157,7 @@ export const projects = [
     image: "/images/memoryhint.jpg",
     visual: "memory",
     summary:
-      "会話内容を記録し、必要な情報を後から検索・提示するメガネ型会話記憶補助AIシステムについて研究しています。",
+      "会話内容を記録し、必要な情報を後から検索・提示するメガネ型会話記憶補助AIシステムについての研究をしました。",
     role: [
       "研究テーマ設計",
       "検索方式の検討",
@@ -166,8 +165,7 @@ export const projects = [
       "RAGや事前生成QA方式の調査"
     ],
     points: [
-      "毎回LLMで生成するのではなく、事前に質問・回答ペアを作成して検索する方式を検討しています。",
-      "速度と精度の両立を目指しています。",
+      "毎回LLMで生成するのではなく、事前に質問・回答ペアを作成した内容を検索する方式で高速化・高精度化を実現しました。",
       "HMD上で邪魔にならない情報提示を考えています。"
     ],
     tech: ["HMD", "XR", "RAG", "RePAQ", "Embedding Search", "LLM", "UI"]
@@ -203,7 +201,7 @@ export const experiences = [
     year: "Education / Web",
     title: "FLLメンター / Jomon Quiz Rally",
     text:
-      "FLLのメンター活動に関わり、Jomon Quiz RallyというWebアプリを作成しました。子どもたちが楽しみながら学べる体験を、技術を使って支えることを意識しました。"
+      "FLLのメンター活動に関わり、子どもたちがWebアプリを作成するお手伝いをしました。https://github.com/kabosubrothersno6/kakokore"
   }
 ];
 
