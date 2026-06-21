@@ -2,7 +2,7 @@
 
 例：
 
-- hero-photo.jpg
+- hero-portfolio.png
 - profile-photo.jpg
 - posture-app.jpg
 - musicdeck.jpg
@@ -21,3 +21,4 @@
 - travel-japan-02.jpg
 
 画像パスは React 側で /images/ファイル名 として指定しています。
+画像が未配置の場合は、ページ側でデザイン済みのフォールバックビジュアルを表示します。

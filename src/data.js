@@ -1,5 +1,3 @@
-const placeholderImage = (width, height) => `https://placehold.co/${width}x${height}/png`;
-
 export const navItems = [
   { id: "about", label: "About" },
   { id: "focus", label: "Focus" },
@@ -16,6 +14,7 @@ export const navItems = [
 export const profile = {
   name: "Hayashi Shuta",
   title: "Information Systems / Swift / XR / HCI / AI",
+  heroImage: "/images/hero-portfolio.png",
   catchCopy:
     "技術と体験設計の両方から、人の記憶・行動・生活を支えるプロダクトを考えています。",
   description:
@@ -56,7 +55,8 @@ export const projects = [
   {
     name: "病院共同の姿勢判別アプリ",
     type: "Medical App / Machine Learning",
-    image: placeholderImage(800, 600),
+    image: "/images/posture-app.jpg",
+    visual: "medical",
     summary:
       "整形外科の医師が行っている小中学生向けの運動機能チェックを支援するため、複数の姿勢判別をアプリで自動化するAndroidアプリを開発しました。",
     role: [
@@ -77,7 +77,8 @@ export const projects = [
   {
     name: "MusicDeck",
     type: "iOS / macOS Personal App",
-    image: placeholderImage(800, 600),
+    image: "/images/musicdeck.jpg",
+    visual: "music",
     summary:
       "Mac上の音楽操作をiPhoneから手軽に行えるようにするため、iPhoneをMacの音楽リモコンのように使えるアプリを個人開発しました。",
     role: [
@@ -99,7 +100,8 @@ export const projects = [
   {
     name: "CarGo Now",
     type: "Business Plan",
-    image: placeholderImage(800, 600),
+    image: "/images/cargo-now.jpg",
+    visual: "logistics",
     summary:
       "自家用車の空きスペースを活用した配送サービスを企画しました。既存の移動や車の空き容量を活用し、地域の物流課題の改善を目指しました。",
     role: [
@@ -119,14 +121,14 @@ export const projects = [
     presentation: {
       title: "CarGo Now! プレゼン資料",
       src:
-        // "https://ynuoffice365-my.sharepoint.com/personal/hayashi-shuta-mf_ynu_jp/_layouts/15/Doc.aspx?sourcedoc={de6337da-fca8-446a-a9f3-43d89eafe86f}&action=embedview&wdAr=1.7777777777777777"
-        "https://1drv.ms/p/c/810bf9147a4c14a8/IQSG8adt8JRBQpmfzpz4xj9XAbCImfdL05j_R73kt8rQNGI?em=2&amp;wdAr=1.7777777777777777"
+        "https://1drv.ms/p/c/810bf9147a4c14a8/IQSG8adt8JRBQpmfzpz4xj9XAbCImfdL05j_R73kt8rQNGI?em=2&wdAr=1.7777777777777777"
     }
   },
   {
     name: "Cook With",
     type: "Business Plan / App Concept",
-    image: placeholderImage(800, 600),
+    image: "/images/cookwith.jpg",
+    visual: "food",
     summary:
       "学生の自炊継続や食材管理の課題に着目し、学生向けの食材配送・自炊支援アプリを企画しました。",
     role: [
@@ -147,13 +149,14 @@ export const projects = [
     presentation: {
       title: "Cook With プレゼン資料",
       src:
-        "https://1drv.ms/p/c/810bf9147a4c14a8/IQTjF3uk-CTxT7wHS-XV2uOVAYmiQAUTi5bxoF3AADruZ6c?em=2&amp;wdAr=1.7777777777777777"
+        "https://1drv.ms/p/c/810bf9147a4c14a8/IQTjF3uk-CTxT7wHS-XV2uOVAYmiQAUTi5bxoF3AADruZ6c?em=2&wdAr=1.7777777777777777"
     }
   },
   {
     name: "メガネ型会話記憶補助AIシステム",
     type: "Research / HMD / AI",
-    image: placeholderImage(800, 600),
+    image: "/images/memoryhint.jpg",
+    visual: "memory",
     summary:
       "会話内容を記録し、必要な情報を後から検索・提示するメガネ型会話記憶補助AIシステムについて研究しています。",
     role: [
@@ -256,25 +259,29 @@ export const skills = [
 
 export const photos = [
   {
-    src: placeholderImage(800, 600),
+    src: "/images/photo-01.jpg",
+    visual: "city",
     title: "夕方の街",
     category: "Daily",
     caption: "移動中に見つけた光や空気感を残した一枚。"
   },
   {
-    src: placeholderImage(800, 600),
+    src: "/images/photo-02.jpg",
+    visual: "landscape",
     title: "旅先の風景",
     category: "Travel",
     caption: "初めて訪れた場所で感じた雰囲気を記録。"
   },
   {
-    src: placeholderImage(800, 600),
+    src: "/images/photo-03.jpg",
+    visual: "campus",
     title: "大学生活の記録",
     category: "University",
     caption: "研究や開発だけでなく、日常の時間も大切にしている。"
   },
   {
-    src: placeholderImage(800, 600),
+    src: "/images/photo-04.jpg",
+    visual: "event",
     title: "イベントの記録",
     category: "Event",
     caption: "活動の中で出会った人や場の雰囲気を写真として残す。"
@@ -285,7 +292,18 @@ export const travels = [
   {
     place: "Singapore",
     date: "Overseas Entrepreneurship Program",
-    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
+    images: [
+      {
+        src: "/images/travel-singapore-01.jpg",
+        visual: "singapore-city",
+        alt: "Singapore city record"
+      },
+      {
+        src: "/images/travel-singapore-02.jpg",
+        visual: "singapore-workshop",
+        alt: "Singapore entrepreneurship program record"
+      }
+    ],
     summary:
       "大学代表として参加したアントレプレナー研修で訪問。企業見学やアイデアソンを通して、海外のビジネス環境や課題解決の考え方に触れました。",
     detail:
@@ -294,7 +312,18 @@ export const travels = [
   {
     place: "Hong Kong",
     date: "Overseas Entrepreneurship Program",
-    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
+    images: [
+      {
+        src: "/images/travel-hongkong-01.jpg",
+        visual: "hongkong-city",
+        alt: "Hong Kong city record"
+      },
+      {
+        src: "/images/travel-hongkong-02.jpg",
+        visual: "hongkong-street",
+        alt: "Hong Kong street record"
+      }
+    ],
     summary:
       "海外アントレプレナー研修で訪問。異なる文化や都市の雰囲気に触れながら、事業やサービスが社会の中でどのように受け入れられているかを考えるきっかけになりました。",
     detail:
@@ -303,7 +332,18 @@ export const travels = [
   {
     place: "Japan Travel",
     date: "Daily Travel Log",
-    images: [placeholderImage(960, 600), placeholderImage(960, 600)],
+    images: [
+      {
+        src: "/images/travel-japan-01.jpg",
+        visual: "japan-rail",
+        alt: "Japan travel record"
+      },
+      {
+        src: "/images/travel-japan-02.jpg",
+        visual: "japan-coast",
+        alt: "Japan landscape record"
+      }
+    ],
     summary:
       "国内の旅行や移動の記録。風景、街、食事、イベントなどを写真と短い文章で残しています。",
     detail:
@@ -342,14 +382,6 @@ export const hobbies = [
 export const links = [
   {
     label: "GitHub",
-    url: "https://github.com/your-account"
-  },
-  {
-    label: "X",
-    url: "https://x.com/your-account"
-  },
-  {
-    label: "Email",
-    url: "mailto:your-email@example.com"
+    url: "https://github.com/884shuta"
   }
 ];

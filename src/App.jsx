@@ -13,12 +13,39 @@ import {
   links
 } from "./data";
 
+function getInitialTheme() {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  const savedTheme = (() => {
+    try {
+      return window.localStorage.getItem("portfolio-theme");
+    } catch {
+      return null;
+    }
+  })();
+
+  if (savedTheme === "light" || savedTheme === "dark") {
+    return savedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
 function App() {
   const [activeSection, setActiveSection] = useState("about");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem("portfolio-theme", theme);
+    } catch {
+      // The selected theme still applies even when storage is unavailable.
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -52,7 +79,11 @@ function App() {
       <Header
         activeSection={activeSection}
         theme={theme}
-        onToggleTheme={() => setTheme(theme === "light" ? "dark" : "light")}
+        onToggleTheme={() =>
+          setTheme((currentTheme) =>
+            currentTheme === "light" ? "dark" : "light"
+          )
+        }
       />
 
       <main>
@@ -103,7 +134,15 @@ function Header({ activeSection, theme, onToggleTheme }) {
         ))}
       </nav>
 
-      <button className="theme-button" type="button" onClick={onToggleTheme}>
+      <button
+        className="theme-button"
+        type="button"
+        onClick={onToggleTheme}
+        aria-label={
+          theme === "light" ? "ダークテーマに切り替え" : "ライトテーマに切り替え"
+        }
+        aria-pressed={theme === "dark"}
+      >
         {theme === "light" ? "Dark" : "Light"}
       </button>
     </header>
@@ -113,6 +152,18 @@ function Header({ activeSection, theme, onToggleTheme }) {
 function Hero() {
   return (
     <section id="top" className="hero">
+      <MediaVisual
+        src={profile.heroImage}
+        alt="Desk scene with app development, XR research, AI notes, photography, and travel items"
+        className="hero-media"
+        kind="hero"
+        variant="portfolio"
+        width="1792"
+        height="1024"
+        loading="eager"
+        fetchPriority="high"
+      />
+
       <div className="hero-text">
         <p className="eyebrow">Portfolio</p>
         <h1>{profile.name}</h1>
@@ -127,18 +178,72 @@ function Hero() {
           <a href="#contact">Contact</a>
         </div>
       </div>
-
-      <div className="hero-image-wrap">
-        <img
-          src="https://placehold.co/900x1200/png"
-          alt="Portfolio hero"
-          className="hero-image"
-          width="900"
-          height="1200"
-          fetchPriority="high"
-        />
-      </div>
     </section>
+  );
+}
+
+function MediaVisual({
+  src,
+  alt,
+  className = "",
+  kind = "default",
+  variant = "default",
+  width,
+  height,
+  loading = "lazy",
+  fetchPriority
+}) {
+  const [hasError, setHasError] = useState(false);
+  const showImage = src && !hasError;
+  const classNames = [
+    "media-visual",
+    `media-visual--${kind}`,
+    `visual-${variant}`,
+    className
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <div className={classNames}>
+      {showImage ? (
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={loading}
+          fetchPriority={fetchPriority}
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <FallbackVisual label={alt} />
+      )}
+    </div>
+  );
+}
+
+function FallbackVisual({ label }) {
+  return (
+    <div className="visual-fallback" role="img" aria-label={label}>
+      <span className="visual-plane visual-plane-a" />
+      <span className="visual-plane visual-plane-b" />
+      <span className="visual-line visual-line-a" />
+      <span className="visual-line visual-line-b" />
+      <span className="visual-line visual-line-c" />
+      <span className="visual-dot visual-dot-a" />
+      <span className="visual-dot visual-dot-b" />
+    </div>
+  );
+}
+
+function TagList({ items, className = "", ariaLabel }) {
+  return (
+    <ul className={`tag-list ${className}`.trim()} aria-label={ariaLabel}>
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
   );
 }
 
@@ -205,7 +310,15 @@ function Projects() {
             <div className="project-meta">
               <p className="project-type">{project.type}</p>
               <h3>{project.name}</h3>
-              <img src={project.image} alt={project.name} width="800" height="600" loading="lazy" />
+              <MediaVisual
+                src={project.image}
+                alt={`${project.name} visual`}
+                className="project-media"
+                kind="project"
+                variant={project.visual}
+                width="800"
+                height="600"
+              />
             </div>
 
             <div className="project-detail">
@@ -214,14 +327,11 @@ function Projects() {
               <DetailList title="担当" items={project.role} />
               <DetailList title="工夫した点" items={project.points} />
 
-              <div className="tech-line" aria-label={`${project.name} technologies`}>
-                {project.tech.map((tech, index) => (
-                  <span key={tech}>
-                    {tech}
-                    {index < project.tech.length - 1 && <b> / </b>}
-                  </span>
-                ))}
-              </div>
+              <TagList
+                items={project.tech}
+                className="tech-line"
+                ariaLabel={`${project.name} technologies`}
+              />
 
               {project.presentation && (
                 <PresentationEmbed presentation={project.presentation} />
@@ -265,7 +375,7 @@ function PresentationEmbed({ presentation }) {
         target="_blank"
         rel="noreferrer"
       >
-        Open presentation
+        資料を開く
       </a>
     </div>
   );
@@ -304,14 +414,7 @@ function Research() {
               <ResearchPoint label="今後" text={theme.future} />
             </div>
 
-            <div className="keyword-line">
-              {theme.keywords.map((keyword, index) => (
-                <span key={keyword}>
-                  {keyword}
-                  {index < theme.keywords.length - 1 && <b> / </b>}
-                </span>
-              ))}
-            </div>
+            <TagList items={theme.keywords} className="keyword-line" />
           </article>
         ))}
       </div>
@@ -335,14 +438,7 @@ function Skills() {
         {skills.map((skill) => (
           <div className="skill-row" key={skill.category}>
             <h3>{skill.category}</h3>
-            <p>
-              {skill.items.map((item, index) => (
-                <span key={item}>
-                  {item}
-                  {index < skill.items.length - 1 && <b> / </b>}
-                </span>
-              ))}
-            </p>
+            <TagList items={skill.items} />
           </div>
         ))}
       </div>
@@ -379,6 +475,7 @@ function Photography() {
             type="button"
             className={activeCategory === category ? "is-active" : ""}
             onClick={() => setActiveCategory(category)}
+            aria-pressed={activeCategory === category}
           >
             {category}
           </button>
@@ -388,7 +485,15 @@ function Photography() {
       <div className="photo-grid">
         {filteredPhotos.map((photo) => (
           <figure className="photo-item" key={photo.title}>
-            <img src={photo.src} alt={photo.title} width="800" height="600" loading="lazy" />
+            <MediaVisual
+              src={photo.src}
+              alt={photo.title}
+              className="photo-media"
+              kind="photo"
+              variant={photo.visual}
+              width="800"
+              height="600"
+            />
             <figcaption>
               <strong>{photo.title}</strong>
               <span>{photo.caption}</span>
@@ -435,13 +540,15 @@ function TravelLog() {
 
                 <div className="travel-images">
                   {travel.images.map((image, index) => (
-                    <img
+                    <MediaVisual
                       key={`${travel.place}-${index}`}
-                      src={image}
-                      alt={`${travel.place} record ${index + 1}`}
+                      src={image.src}
+                      alt={image.alt}
+                      className="travel-media"
+                      kind="travel"
+                      variant={image.visual}
                       width="960"
                       height="600"
-                      loading="lazy"
                     />
                   ))}
                 </div>
@@ -453,7 +560,7 @@ function TravelLog() {
                   type="button"
                   onClick={() => togglePlace(travel.place)}
                 >
-                  {isOpen ? "Close" : "Read more"}
+                  {isOpen ? "閉じる" : "詳しく見る"}
                 </button>
               </div>
             </article>
