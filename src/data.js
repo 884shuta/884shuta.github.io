@@ -16,7 +16,7 @@ export const profile = {
   title: " HCI / Swift / XR / AI",
   heroImage: "/images/hero-portfolio.png",
   catchCopy:
-    "アイデア力と技術力で身近な課題を解決する",
+    "現在Webサイト作成中  アイデア力と技術力で身近な課題を解決する",
   description:
     "知覚を用いたXR・HCI領域の研究、Swiftを用いたアプリ開発、ビジネスプランコンテスト、医療現場と連携したアプリ開発などに取り組んでいます。アイデアと技術で課題を解決することを目指しています。",
   details: [
