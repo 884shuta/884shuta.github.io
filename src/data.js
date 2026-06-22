@@ -94,7 +94,17 @@ export const projects = [
       "見た目のわかりやすさと通信量のバランスを考えました。",
       "カスタマイズ性と便利さを共存させました。"
     ],
-    tech: ["Swift", "SwiftUI", "iOS", "macOS", "TCP", "Multipeer Connectivity"]
+    tech: ["Swift", "SwiftUI", "iOS", "macOS", "TCP", "Multipeer Connectivity"],
+    testFlights: [
+      {
+        label: "iPhone版 TestFlight",
+        url: "https://testflight.apple.com/join/WTsdsdNE"
+      },
+      {
+        label: "Mac版 TestFlight",
+        url: "https://testflight.apple.com/join/Nywx67be"
+      }
+    ]
   },
   {
     name: "CarGo Now",

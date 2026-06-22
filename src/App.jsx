@@ -116,18 +116,25 @@ function App() {
 }
 
 function Header({ activeSection, theme, onToggleTheme }) {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
     <header className="site-header">
       <a className="header-logo" href="#top" aria-label="Go to top">
         HS
       </a>
 
-      <nav className="global-nav" aria-label="Main navigation">
+      <nav
+        id="global-nav"
+        className={`global-nav ${isNavOpen ? "is-open" : ""}`}
+        aria-label="Main navigation"
+      >
         {navItems.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
             className={activeSection === item.id ? "is-active" : ""}
+            onClick={() => setIsNavOpen(false)}
           >
             {item.label}
           </a>
@@ -145,11 +152,26 @@ function Header({ activeSection, theme, onToggleTheme }) {
       >
         {theme === "light" ? "Dark" : "Light"}
       </button>
+
+      <button
+        className="menu-button"
+        type="button"
+        onClick={() => setIsNavOpen((current) => !current)}
+        aria-controls="global-nav"
+        aria-expanded={isNavOpen}
+        aria-label={isNavOpen ? "メニューを閉じる" : "メニューを開く"}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
     </header>
   );
 }
 
 function Hero() {
+  const githubLink = links.find((link) => link.label === "GitHub");
+
   return (
     <section id="top" className="hero">
       <MediaVisual
@@ -166,7 +188,20 @@ function Hero() {
 
       <div className="hero-text">
         <p className="eyebrow">Portfolio</p>
-        <h1>{profile.name}</h1>
+        <div className="hero-name-row">
+          <h1>{profile.name}</h1>
+          {githubLink && (
+            <a
+              className="hero-icon-link"
+              href={githubLink.url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHubページを開く"
+            >
+              <img src="/favicon.svg" alt="" width="54" height="54" />
+            </a>
+          )}
+        </div>
         <p className="hero-title">{profile.title}</p>
         <p className="hero-copy">{profile.catchCopy}</p>
         <p className="hero-description">{profile.description}</p>
@@ -264,7 +299,7 @@ function About() {
     <Section id="about" label="About" title="自己紹介">
       <div className="text-block">
         <p>
-          大分大学の情報系学部で、アプリ開発、XR、HCI、AI活用に関心を持って学んでいます。
+          横浜国立大学の情報系学部で、アプリ開発、XR、HCI、AI活用に関心を持って学んでいます。
           特に、技術を使って人の行動や記憶、日常の体験を支援することに興味があります。
         </p>
         <p>
@@ -333,6 +368,10 @@ function Projects() {
                 ariaLabel={`${project.name} technologies`}
               />
 
+              {project.testFlights && (
+                <ProjectLinks title="TestFlight" links={project.testFlights} />
+              )}
+
               {project.presentation && (
                 <PresentationEmbed presentation={project.presentation} />
               )}
@@ -341,6 +380,27 @@ function Projects() {
         ))}
       </div>
     </Section>
+  );
+}
+
+function ProjectLinks({ title, links }) {
+  return (
+    <div className="project-links">
+      <h4>{title}</h4>
+      <div className="project-link-list">
+        {links.map((link) => (
+          <a
+            key={link.label}
+            className="project-link"
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }
 
