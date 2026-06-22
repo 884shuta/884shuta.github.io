@@ -369,7 +369,7 @@ function Projects() {
               />
 
               {project.testFlights && (
-                <ProjectLinks title="TestFlight" links={project.testFlights} />
+                <ProjectLinks title="TestFlight(バグ発生中)" links={project.testFlights} />
               )}
 
               {project.presentation && (
