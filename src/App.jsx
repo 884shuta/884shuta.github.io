@@ -10,6 +10,8 @@ import {
   photos,
   travels,
   hobbies,
+  publicLinks,
+  backlogItems,
   links
 } from "./data";
 
@@ -106,6 +108,10 @@ function App() {
         <TravelLog />
 
         <Hobbies />
+
+        <PublicLinks />
+
+        <Backlog />
 
         <Contact />
       </main>
@@ -369,7 +375,11 @@ function Projects() {
               />
 
               {project.testFlights && (
-                <ProjectLinks title="TestFlight(バグ発生中)" links={project.testFlights} />
+                <ProjectLinks title="TestFlight（現在改善中）" links={project.testFlights} />
+              )}
+
+              {project.externalLinks && (
+                <ProjectLinks title="公開情報" links={project.externalLinks} />
               )}
 
               {project.presentation && (
@@ -642,6 +652,44 @@ function Hobbies() {
           </article>
         ))}
       </div>
+    </Section>
+  );
+}
+
+function PublicLinks() {
+  return (
+    <Section id="publications" label="Public Links" title="公開情報・掲載リンク">
+      <div className="link-card-list">
+        {publicLinks.map((link) => (
+          <article className="link-card" key={link.url}>
+            <div>
+              <h3>{link.title}</h3>
+              <p>{link.description}</p>
+            </div>
+            <a href={link.url} target="_blank" rel="noreferrer">
+              開く
+            </a>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Backlog() {
+  return (
+    <Section id="backlog" label="Backlog" title="追加したい情報">
+      <div className="text-block section-intro">
+        <p>
+          ChatGPTの会話履歴など、現在この環境から直接参照できない情報も含め、
+          今後ポートフォリオに追加すると説得力が上がる内容を整理しました。
+        </p>
+      </div>
+      <ul className="backlog-list">
+        {backlogItems.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </Section>
   );
 }

@@ -8,6 +8,8 @@ export const navItems = [
   { id: "photography", label: "Photography" },
   { id: "travel", label: "Travel" },
   { id: "hobbies", label: "Hobbies" },
+  { id: "publications", label: "Links" },
+  { id: "backlog", label: "Backlog" },
   { id: "contact", label: "Contact" }
 ];
 
@@ -16,11 +18,12 @@ export const profile = {
   title: " HCI / Swift / XR / AI",
   heroImage: "/images/hero-portfolio.png",
   catchCopy:
-    "現在Webサイト作成中  アイデア力と技術力で身近な課題を解決する",
+    "アイデア力と技術力で、身近な課題を実装可能なプロダクトへ変える",
   description:
     "知覚を用いたXR・HCI領域の研究、Swiftを用いたアプリ開発、ビジネスプランコンテスト、医療現場と連携したアプリ開発などに取り組んでいます。アイデアと技術で課題を解決することを目指しています。",
   details: [
     ["University", "Yokohama National University"],
+    ["Previous", "Oita University / Intelligent Information Systems"],
     ["Field", "Information Systems / HCI / XR"],
     ["Interests", "Swift, iOS, macOS, XR, AI, UX"],
     ["English", "TOEIC 865（Listening 450 / Reading 415）"],
@@ -124,11 +127,17 @@ export const projects = [
     points: [
       "すでに存在する移動や空きスペースを活用する発想を取り入れました。",
       "地域課題と利用者のメリットを両立させる設計を考えました。",
-      "大分大学ビジネスプランコンテストで優勝しました。(2024)"
+      "第23回大分大学ベンチャー・ビジネスプランコンテストで最優秀賞を受賞しました（2024）。"
     ],
     tech: ["Business Plan", "Logistics", "Presentation", "Team Management"],
+    externalLinks: [
+      {
+        label: "大分大学 令和6年度 最終審査会レポート",
+        url: "https://www.ico.oita-u.ac.jp/information/1987/"
+      }
+    ],
     presentation: {
-      title: "CarGo Now! プレゼン資料(読み込みには時間がかかります。)",
+      title: "CarGo Now! プレゼン資料（読み込みには時間がかかります）",
       src:
         "https://1drv.ms/p/c/810bf9147a4c14a8/IQSG8adt8JRBQpmfzpz4xj9XAbCImfdL05j_R73kt8rQNGI?em=2&wdAr=1.7777777777777777"
     }
@@ -152,11 +161,21 @@ export const projects = [
       "学生の生活課題を起点にサービスを設計しました。",
       "食材を届けるだけでなく、継続的に自炊する仕組みを考えました。",
       "在庫管理や栄養管理まで含めた体験を設計しました。",
-      "大分大学ビジネスプランコンテストで準優勝、企業賞を受賞しました(2025)。"
+      "第24回大分大学ベンチャー・ビジネスプランコンテストで優秀賞と企業賞を受賞しました（2025）。"
     ],
     tech: ["Business Plan", "UI Concept", "Presentation", "User Research"],
+    externalLinks: [
+      {
+        label: "大分大学 第24回 最終審査会レポート",
+        url: "https://www.oita-u.ac.jp/01oshirase/topics/2025-033.html"
+      },
+      {
+        label: "OBS NEWS 最終審査会記事",
+        url: "https://newsdig.tbs.co.jp/articles/obs/2187900"
+      }
+    ],
     presentation: {
-      title: "Cook With プレゼン資料(読み込みには時間がかかります。)",
+      title: "Cook With プレゼン資料（読み込みには時間がかかります）",
       src:
         "https://1drv.ms/p/c/810bf9147a4c14a8/IQTjF3uk-CTxT7wHS-XV2uOVAYmiQAUTi5bxoF3AADruZ6c?em=2&wdAr=1.7777777777777777"
     }
@@ -187,7 +206,7 @@ export const experiences = [
     year: "2024 - 2026",
     title: "ビジネスプランコンテストへの継続挑戦",
     text:
-      "学部1年、3年、4年で学内ビジネスプランコンテストに参加し、すべて本戦に出場しました。学部3年では優勝、学部4年では準優勝を経験しました。毎回異なるメンバーでチームを組み、ユーザー課題の発見、ビジネスモデル設計、資料作成、発表まで主導しました。"
+      "学部1年、3年、4年で学内ビジネスプランコンテストに参加し、すべて本戦に出場しました。学部3年では第23回最優秀賞、学部4年では第24回優秀賞・企業賞を経験しました。毎回異なるメンバーでチームを組み、ユーザー課題の発見、ビジネスモデル設計、資料作成、発表まで主導しました。"
   },
   {
     year: "2025 - 2026",
@@ -385,6 +404,33 @@ export const hobbies = [
     text:
       "野球観戦など、スポーツの場の熱量や一体感を楽しんでいます。会場の雰囲気や座席から見える景色も含めて楽しんでいます。"
   }
+];
+
+export const publicLinks = [
+  {
+    title: "令和6年度 大分大学ベンチャー・ビジネスプランコンテスト",
+    description: "CarGo Now! が最優秀賞として掲載されています。",
+    url: "https://www.ico.oita-u.ac.jp/information/1987/"
+  },
+  {
+    title: "第24回 大分大学ベンチャー・ビジネスプランコンテスト",
+    description: "2025年度の最終審査会レポートです。Cook With は優秀賞・企業賞として追記予定の公開情報として整理しています。",
+    url: "https://www.oita-u.ac.jp/01oshirase/topics/2025-033.html"
+  },
+  {
+    title: "Jomon Quiz Rally / Kakokore",
+    description: "FLLメンター活動で子どもたちのWebアプリ制作を支援したリポジトリです。",
+    url: "https://github.com/kabosubrothersno6/kakokore"
+  }
+];
+
+export const backlogItems = [
+  "ChatGPTの会話履歴はこの環境から直接参照できないため、追加候補は手元の履歴から要確認。",
+  "VBPCの発表写真、受賞時の集合写真、審査員コメント、企業賞名を追記する。",
+  "病院共同開発は公開可否を確認したうえで、医療機関名・利用フロー・画面キャプチャを追加する。",
+  "MusicDeckはTestFlightの不具合状況、対応OS、主要機能のスクリーンショットを追加する。",
+  "研究テーマは発表実績、プロトタイプ動画、評価実験の概要を公開可能な範囲で追加する。",
+  "写真・旅行セクションは実画像を追加し、撮影地や時期を整理する。"
 ];
 
 export const links = [
