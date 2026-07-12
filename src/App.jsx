@@ -127,7 +127,7 @@ function Header({ activeSection, theme, onToggleTheme }) {
   return (
     <header className="site-header">
       <a className="header-logo" href="#top" aria-label="Go to top">
-        HS
+        <img src="/favicon.svg" alt="" width="42" height="42" />
       </a>
 
       <nav
@@ -176,8 +176,6 @@ function Header({ activeSection, theme, onToggleTheme }) {
 }
 
 function Hero() {
-  const githubLink = links.find((link) => link.label === "GitHub");
-
   return (
     <section id="top" className="hero">
       <MediaVisual
@@ -194,20 +192,7 @@ function Hero() {
 
       <div className="hero-text">
         <p className="eyebrow">Portfolio</p>
-        <div className="hero-name-row">
-          <h1>{profile.name}</h1>
-          {githubLink && (
-            <a
-              className="hero-icon-link"
-              href={githubLink.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHubページを開く"
-            >
-              <img src="/favicon.svg" alt="" width="54" height="54" />
-            </a>
-          )}
-        </div>
+        <h1>{profile.name}</h1>
         <p className="hero-title">{profile.title}</p>
         <p className="hero-copy">{profile.catchCopy}</p>
         <p className="hero-description">{profile.description}</p>
