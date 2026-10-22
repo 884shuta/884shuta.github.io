@@ -247,13 +247,30 @@ function TagList({ items, className = "", ariaLabel }) {
 }
 
 function Section({ id, label, title, children }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section id={id} className="section">
       <div className="section-heading">
-        <p className="eyebrow">{label}</p>
-        <h2>{title}</h2>
+        <button
+          className="section-toggle"
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls={`${id}-content`}
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          <span className="eyebrow">{label}</span>
+          <span className="section-title">{title}</span>
+          <span className="section-toggle-icon" aria-hidden="true">
+            {isOpen ? "−" : "+"}
+          </span>
+        </button>
       </div>
-      <div className="section-body">{children}</div>
+      {isOpen && (
+        <div id={`${id}-content`} className="section-body">
+          {children}
+        </div>
+      )}
     </section>
   );
 }

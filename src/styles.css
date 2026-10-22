@@ -458,6 +458,54 @@ main {
   align-self: start;
 }
 
+.section-toggle {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 16px;
+  align-items: end;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.section-toggle .eyebrow {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.section-title {
+  font-size: clamp(1.7rem, 3vw, 2.55rem);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.section-toggle-icon {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.section-toggle:hover .section-toggle-icon,
+.section-toggle:focus-visible .section-toggle-icon {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.section-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 8px;
+}
+
 .section-heading h2 {
   margin: 0;
   font-size: clamp(1.7rem, 3vw, 2.55rem);
@@ -1134,6 +1182,10 @@ main {
   }
 
   .section-heading h2 {
+    font-size: 1.58rem;
+  }
+
+  .section-title {
     font-size: 1.58rem;
   }
 
