@@ -268,6 +268,25 @@ main {
   border-bottom-color: var(--accent);
 }
 
+.page-intro {
+  padding: clamp(54px, 8vw, 84px) 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-intro h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.page-intro p:last-child {
+  max-width: 700px;
+  margin: 20px 0 0;
+  color: var(--muted);
+}
+
 .media-visual {
   position: relative;
   overflow: hidden;

@@ -1,12 +1,9 @@
-export const navItems = [
-  { id: "about", label: "About" },
+export const pageItems = [
+  { id: "home", label: "Home" },
   { id: "projects", label: "Projects" },
-  { id: "experiences", label: "Experiences" },
-  { id: "research", label: "Research" },
+  { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
-  { id: "hobbies", label: "Hobbies" },
-  { id: "publications", label: "Links" },
-  { id: "contact", label: "Contact" }
+  { id: "links", label: "Links" }
 ];
 
 export const profile = {

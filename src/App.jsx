@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-  navItems,
+  pageItems,
   profile,
   projects,
   experiences,
@@ -10,6 +10,17 @@ import {
   publicLinks,
   links
 } from "./data";
+
+function getInitialPage() {
+  if (typeof window === "undefined") {
+    return "home";
+  }
+
+  const requestedPage = window.location.hash.slice(1);
+  return pageItems.some((page) => page.id === requestedPage)
+    ? requestedPage
+    : "home";
+}
 
 function getInitialTheme() {
   if (typeof window === "undefined") {
@@ -34,7 +45,7 @@ function getInitialTheme() {
 }
 
 function App() {
-  const [activeSection, setActiveSection] = useState("about");
+  const [activePage, setActivePage] = useState(getInitialPage);
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
@@ -47,35 +58,16 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    const sectionElements = navItems
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean);
+    const handleHashChange = () => setActivePage(getInitialPage());
+    window.addEventListener("hashchange", handleHashChange);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-
-        if (visible[0]) {
-          setActiveSection(visible[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-20% 0px -65% 0px",
-        threshold: [0.1, 0.2, 0.4]
-      }
-    );
-
-    sectionElements.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
   return (
     <div className="site">
       <Header
-        activeSection={activeSection}
+        activePage={activePage}
         theme={theme}
         onToggleTheme={() =>
           setTheme((currentTheme) =>
@@ -85,23 +77,11 @@ function App() {
       />
 
       <main>
-        <Hero />
-
-        <About />
-
-        <Projects />
-
-        <Experiences />
-
-        <Research />
-
-        <Skills />
-
-        <Hobbies />
-
-        <PublicLinks />
-
-        <Contact />
+        {activePage === "home" && <HomePage />}
+        {activePage === "projects" && <ProjectsPage />}
+        {activePage === "experience" && <ExperiencePage />}
+        {activePage === "skills" && <SkillsPage />}
+        {activePage === "links" && <LinksPage />}
       </main>
 
       <Footer />
@@ -109,12 +89,12 @@ function App() {
   );
 }
 
-function Header({ activeSection, theme, onToggleTheme }) {
+function Header({ activePage, theme, onToggleTheme }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
     <header className="site-header">
-      <a className="header-logo" href="#top" aria-label="Go to top">
+      <a className="header-logo" href="#home" aria-label="Go to home">
         <img src="/favicon.svg" alt="" width="42" height="42" />
       </a>
 
@@ -123,11 +103,11 @@ function Header({ activeSection, theme, onToggleTheme }) {
         className={`global-nav ${isNavOpen ? "is-open" : ""}`}
         aria-label="Main navigation"
       >
-        {navItems.map((item) => (
+        {pageItems.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
-            className={activeSection === item.id ? "is-active" : ""}
+            className={activePage === item.id ? "is-active" : ""}
             onClick={() => setIsNavOpen(false)}
           >
             {item.label}
@@ -174,10 +154,89 @@ function Hero() {
 
         <div className="hero-links" aria-label="Featured links">
           <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#links">Links & Contact</a>
         </div>
       </div>
     </section>
+  );
+}
+
+function PageIntro({ label, title, description }) {
+  return (
+    <div className="page-intro">
+      <p className="eyebrow">{label}</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <PageIntro
+        label="Start here"
+        title="ポートフォリオ概要"
+        description="研究、アプリ開発、ビジネスプラン、活動実績をテーマ別に整理しています。詳しく見たいページを選んでください。"
+      />
+      <About />
+    </>
+  );
+}
+
+function ProjectsPage() {
+  return (
+    <>
+      <PageIntro
+        label="Projects"
+        title="開発・研究・企画"
+        description="アプリ開発、研究プロトタイプ、ビジネスプランの実績をまとめています。"
+      />
+      <Projects />
+    </>
+  );
+}
+
+function ExperiencePage() {
+  return (
+    <>
+      <PageIntro
+        label="Experience & Research"
+        title="経験と研究"
+        description="活動実績と、現在取り組んでいる研究テーマをまとめています。"
+      />
+      <Experiences />
+      <Research />
+    </>
+  );
+}
+
+function SkillsPage() {
+  return (
+    <>
+      <PageIntro
+        label="Skills & Hobbies"
+        title="スキルと趣味"
+        description="使用技術と、普段の関心をまとめています。"
+      />
+      <Skills />
+      <Hobbies />
+    </>
+  );
+}
+
+function LinksPage() {
+  return (
+    <>
+      <PageIntro
+        label="Links & Contact"
+        title="公開情報・連絡先"
+        description="外部掲載情報と連絡先をまとめています。"
+      />
+      <PublicLinks />
+      <Contact />
+    </>
   );
 }
 
