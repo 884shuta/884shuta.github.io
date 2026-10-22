@@ -37,8 +37,11 @@ jobs:
 
       - name: Build site
         env:
-          PUBLIC_BASE_PATH: ${{ github.event.repository.name == format('{0}.github.io', github.repository_owner) && '/' || format('/{0}/', github.event.repository.name) }}
-        run: npm run build
+          PUBLIC_BASE_PATH: /portfolio/
+        run: npm run build -- --outDir dist/portfolio
+
+      - name: Configure custom domain
+        run: cp CNAME dist/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
