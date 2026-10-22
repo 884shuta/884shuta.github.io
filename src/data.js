@@ -1,26 +1,19 @@
 export const navItems = [
   { id: "about", label: "About" },
-  { id: "focus", label: "Focus" },
   { id: "projects", label: "Projects" },
   { id: "experiences", label: "Experiences" },
   { id: "research", label: "Research" },
   { id: "skills", label: "Skills" },
-  { id: "photography", label: "Photography" },
-  { id: "travel", label: "Travel" },
   { id: "hobbies", label: "Hobbies" },
   { id: "publications", label: "Links" },
-  { id: "backlog", label: "Backlog" },
   { id: "contact", label: "Contact" }
 ];
 
 export const profile = {
   name: "Hayashi Shuta",
   title: " HCI / Swift / XR / AI",
-  heroImage: "/images/hero-portfolio.png",
-  catchCopy:
-    "アイデア力と技術力で、身近な課題を実装可能なプロダクトへ変える",
   description:
-    "知覚を用いたXR・HCI領域の研究、Swiftを用いたアプリ開発、ビジネスプランコンテスト、医療現場と連携したアプリ開発などに取り組んでいます。アイデアと技術で課題を解決することを目指しています。",
+    "Swift / SwiftUIによるアプリ開発、XR・HCI領域の研究、医療現場と連携したアプリ開発、ビジネスプランコンテストに取り組んでいます。アイデアを形にする企画力と、実装まで進める主体性・技術力が強みです。",
   details: [
     ["University", "Yokohama National University"],
     ["Previous", "Oita University / Intelligent Information Systems"],
@@ -30,29 +23,6 @@ export const profile = {
     ["Location", "Japan"]
   ]
 };
-
-export const focusItems = [
-  {
-    title: "体験から技術を考える",
-    text:
-      "技術を先に置くのではなく、ユーザーがどのような状況で困っているか、どのような体験に変えたいかを起点に考えることを大切にしています。"
-  },
-  {
-    title: "小さく作って試す",
-    text:
-      "アイデアを考えるだけで終わらせず、アプリやWebサービスとして実際に動く形にし、触りながら改善していくことを重視しています。"
-  },
-  {
-    title: "現場の声を取り入れる",
-    text:
-      "病院共同開発やビジネスプランコンテストの経験から、実際に使う人の声を聞きながら改善することの重要性を学びました。"
-  },
-  {
-    title: "技術と企画をつなげる",
-    text:
-      "実装だけでなく、課題設定、利用シーン、事業性、継続利用まで考えながらプロダクトを作ることを意識しています。"
-  }
-];
 
 export const projects = [
   {
@@ -98,14 +68,11 @@ export const projects = [
       "カスタマイズ性と便利さを共存させました。"
     ],
     tech: ["Swift", "SwiftUI", "iOS", "macOS", "TCP", "Multipeer Connectivity"],
-    testFlights: [
+    externalLinksTitle: "MusicDeck詳細",
+    externalLinks: [
       {
-        label: "iPhone版 TestFlight",
-        url: "https://testflight.apple.com/join/WTsdsdNE"
-      },
-      {
-        label: "Mac版 TestFlight",
-        url: "https://testflight.apple.com/join/Nywx67be"
+        label: "MusicDeckの詳細ページを見る",
+        url: "https://884shuta.com/musicdeck/"
       }
     ]
   },
@@ -221,12 +188,6 @@ export const experiences = [
       "新歓後に参加者が減る課題に対して、人間関係の薄れが原因の一つだと考えました。通常活動を安定して続けるだけでなく、イベント回数を増やし、新入生と既存メンバーが自然に会話できる場を作りました。"
   },
   {
-    year: "Overseas",
-    title: "海外アントレプレナー研修",
-    text:
-      "大学代表としてシンガポールや香港のアントレプレナー研修に参加しました。企業見学やアイデアソンを通して、海外のビジネス環境や課題解決の考え方に触れました。"
-  },
-  {
     year: "Education / Web",
     title: "FLLメンター / Jomon Quiz Rally",
     text:
@@ -268,7 +229,7 @@ export const skills = [
   },
   {
     category: "App Development",
-    items: ["iOS", "macOS", "Flutter", "Android", "TestFlight", "Apple Developer Program", "端末間通信", "UI設計"]
+    items: ["iOS", "macOS", "Flutter", "Android", "Apple Developer Program", "端末間通信", "UI設計"]
   },
   {
     category: "AI / ML",
@@ -284,100 +245,6 @@ export const skills = [
   }
 ];
 
-export const photos = [
-  {
-    src: "/images/photo-01.jpg",
-    visual: "city",
-    title: "夕方の街",
-    category: "Daily",
-    caption: "移動中に見つけた光や空気感を残した一枚。"
-  },
-  {
-    src: "/images/photo-02.jpg",
-    visual: "landscape",
-    title: "旅先の風景",
-    category: "Travel",
-    caption: "初めて訪れた場所で感じた雰囲気を記録。"
-  },
-  {
-    src: "/images/photo-03.jpg",
-    visual: "campus",
-    title: "大学生活の記録",
-    category: "University",
-    caption: "研究や開発だけでなく、日常の時間も大切にしている。"
-  },
-  {
-    src: "/images/photo-04.jpg",
-    visual: "event",
-    title: "イベントの記録",
-    category: "Event",
-    caption: "活動の中で出会った人や場の雰囲気を写真として残す。"
-  }
-];
-
-export const travels = [
-  {
-    place: "Singapore",
-    date: "Overseas Entrepreneurship Program",
-    images: [
-      {
-        src: "/images/travel-singapore-01.jpg",
-        visual: "singapore-city",
-        alt: "Singapore city record"
-      },
-      {
-        src: "/images/travel-singapore-02.jpg",
-        visual: "singapore-workshop",
-        alt: "Singapore entrepreneurship program record"
-      }
-    ],
-    summary:
-      "大学代表として参加したアントレプレナー研修で訪問。企業見学やアイデアソンを通して、海外のビジネス環境や課題解決の考え方に触れました。",
-    detail:
-      "単なる観光ではなく、自分の将来やプロダクトづくりへの視点を広げる経験になりました。日本とは異なる街の雰囲気やビジネスの捉え方に触れたことで、サービスを考える際にユーザーや市場をより広く見る意識が強くなりました。"
-  },
-  {
-    place: "Hong Kong",
-    date: "Overseas Entrepreneurship Program",
-    images: [
-      {
-        src: "/images/travel-hongkong-01.jpg",
-        visual: "hongkong-city",
-        alt: "Hong Kong city record"
-      },
-      {
-        src: "/images/travel-hongkong-02.jpg",
-        visual: "hongkong-street",
-        alt: "Hong Kong street record"
-      }
-    ],
-    summary:
-      "海外アントレプレナー研修で訪問。異なる文化や都市の雰囲気に触れながら、事業やサービスが社会の中でどのように受け入れられているかを考えるきっかけになりました。",
-    detail:
-      "都市の密度や移動のしやすさ、人の流れを見ながら、生活とサービスの距離感について考える機会になりました。"
-  },
-  {
-    place: "Japan Travel",
-    date: "Daily Travel Log",
-    images: [
-      {
-        src: "/images/travel-japan-01.jpg",
-        visual: "japan-rail",
-        alt: "Japan travel record"
-      },
-      {
-        src: "/images/travel-japan-02.jpg",
-        visual: "japan-coast",
-        alt: "Japan landscape record"
-      }
-    ],
-    summary:
-      "国内の旅行や移動の記録。風景、街、食事、イベントなどを写真と短い文章で残しています。",
-    detail:
-      "特別な観光地だけでなく、移動中に見た景色や何気ない街の空気感も記録していきたいと考えています。"
-  }
-];
-
 export const hobbies = [
   {
     title: "写真",
@@ -385,24 +252,14 @@ export const hobbies = [
       "日常や旅行先で、風景や街の雰囲気を撮ることが好きです。記録としてだけでなく、その時の感情や空気感を残す手段として写真を撮っています。"
   },
   {
-    title: "旅行",
-    text:
-      "海外研修や国内旅行を通して、新しい場所の文化や生活に触れることが好きです。旅先で得た視点は、ビジネスアイデアやUI/UXを考えるときにも影響しています。"
-  },
-  {
     title: "アプリ開発",
     text:
       "日常の中で感じた不便や、あったら便利だと思うものを、自分でアプリとして形にすることが好きです。Swift / SwiftUIを中心に、iPhoneやMacで動くアプリを作っています。"
   },
   {
-    title: "バドミントン",
+    title: "サイクリング",
     text:
-      "大学のバドミントンサークルで幹部を経験しました。競技としてだけでなく、人が集まり、関係性が生まれる場としてのサークル活動にも関心を持ちました。"
-  },
-  {
-    title: "スポーツ観戦",
-    text:
-      "野球観戦など、スポーツの場の熱量や一体感を楽しんでいます。会場の雰囲気や座席から見える景色も含めて楽しんでいます。"
+      "自転車で街や自然の中を走り、普段とは違う景色や道を見つけることが好きです。移動そのものを楽しみながら、気分転換や新しいアイデアのきっかけにもしています。"
   }
 ];
 
@@ -422,15 +279,6 @@ export const publicLinks = [
     description: "FLLメンター活動で子どもたちのWebアプリ制作を支援したリポジトリです。",
     url: "https://github.com/kabosubrothersno6/kakokore"
   }
-];
-
-export const backlogItems = [
-  "ChatGPTの会話履歴はこの環境から直接参照できないため、追加候補は手元の履歴から要確認。",
-  "VBPCの発表写真、受賞時の集合写真、審査員コメント、企業賞名を追記する。",
-  "病院共同開発は公開可否を確認したうえで、医療機関名・利用フロー・画面キャプチャを追加する。",
-  "MusicDeckはTestFlightの不具合状況、対応OS、主要機能のスクリーンショットを追加する。",
-  "研究テーマは発表実績、プロトタイプ動画、評価実験の概要を公開可能な範囲で追加する。",
-  "写真・旅行セクションは実画像を追加し、撮影地や時期を整理する。"
 ];
 
 export const links = [

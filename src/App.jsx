@@ -1,17 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   navItems,
   profile,
-  focusItems,
   projects,
   experiences,
   researchThemes,
   skills,
-  photos,
-  travels,
   hobbies,
   publicLinks,
-  backlogItems,
   links
 } from "./data";
 
@@ -93,8 +89,6 @@ function App() {
 
         <About />
 
-        <Focus />
-
         <Projects />
 
         <Experiences />
@@ -103,15 +97,9 @@ function App() {
 
         <Skills />
 
-        <Photography />
-
-        <TravelLog />
-
         <Hobbies />
 
         <PublicLinks />
-
-        <Backlog />
 
         <Contact />
       </main>
@@ -178,29 +166,14 @@ function Header({ activeSection, theme, onToggleTheme }) {
 function Hero() {
   return (
     <section id="top" className="hero">
-      <MediaVisual
-        src={profile.heroImage}
-        alt="Desk scene with app development, XR research, AI notes, photography, and travel items"
-        className="hero-media"
-        kind="hero"
-        variant="portfolio"
-        width="1792"
-        height="1024"
-        loading="eager"
-        fetchPriority="high"
-      />
-
       <div className="hero-text">
         <p className="eyebrow">Portfolio</p>
         <h1>{profile.name}</h1>
         <p className="hero-title">{profile.title}</p>
-        <p className="hero-copy">{profile.catchCopy}</p>
         <p className="hero-description">{profile.description}</p>
 
         <div className="hero-links" aria-label="Featured links">
           <a href="#projects">Projects</a>
-          <a href="#photography">Photography</a>
-          <a href="#travel">Travel</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
@@ -312,21 +285,6 @@ function About() {
   );
 }
 
-function Focus() {
-  return (
-    <Section id="focus" label="Focus" title="私が大切にしていること">
-      <div className="focus-list">
-        {focusItems.map((item) => (
-          <article className="focus-item" key={item.title}>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 function Projects() {
   return (
     <Section id="projects" label="Projects" title="開発・研究・企画">
@@ -336,15 +294,19 @@ function Projects() {
             <div className="project-meta">
               <p className="project-type">{project.type}</p>
               <h3>{project.name}</h3>
-              <MediaVisual
-                src={project.image}
-                alt={`${project.name} visual`}
-                className="project-media"
-                kind="project"
-                variant={project.visual}
-                width="800"
-                height="600"
-              />
+              {project.presentation ? (
+                <PresentationEmbed presentation={project.presentation} placement="media" />
+              ) : (
+                <MediaVisual
+                  src={project.image}
+                  alt={`${project.name} visual`}
+                  className="project-media"
+                  kind="project"
+                  variant={project.visual}
+                  width="800"
+                  height="600"
+                />
+              )}
             </div>
 
             <div className="project-detail">
@@ -359,17 +321,13 @@ function Projects() {
                 ariaLabel={`${project.name} technologies`}
               />
 
-              {project.testFlights && (
-                <ProjectLinks title="TestFlight（現在改善中）" links={project.testFlights} />
-              )}
-
               {project.externalLinks && (
-                <ProjectLinks title="公開情報" links={project.externalLinks} />
+                <ProjectLinks
+                  title={project.externalLinksTitle || "公開情報"}
+                  links={project.externalLinks}
+                />
               )}
 
-              {project.presentation && (
-                <PresentationEmbed presentation={project.presentation} />
-              )}
             </div>
           </article>
         ))}
@@ -412,9 +370,9 @@ function DetailList({ title, items }) {
   );
 }
 
-function PresentationEmbed({ presentation }) {
+function PresentationEmbed({ presentation, placement = "detail" }) {
   return (
-    <div className="presentation-embed">
+    <div className={`presentation-embed presentation-embed--${placement}`}>
       <h4>{presentation.title}</h4>
       <div className="presentation-frame">
         <iframe
@@ -501,131 +459,6 @@ function Skills() {
   );
 }
 
-function Photography() {
-  const categories = useMemo(() => {
-    return ["All", ...new Set(photos.map((photo) => photo.category))];
-  }, []);
-
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredPhotos =
-    activeCategory === "All"
-      ? photos
-      : photos.filter((photo) => photo.category === activeCategory);
-
-  return (
-    <Section id="photography" label="Photography" title="写真">
-      <div className="text-block section-intro">
-        <p>
-          写真は、日常や旅先で感じた空気感を残すために撮っています。
-          特別な瞬間だけでなく、移動中の景色や街の光、何気ない場面にも、
-          その時の感情や記憶が残っていると感じています。
-        </p>
-      </div>
-
-      <div className="filter-nav" aria-label="Photo categories">
-        {categories.map((category) => (
-          <button
-            key={category}
-            type="button"
-            className={activeCategory === category ? "is-active" : ""}
-            onClick={() => setActiveCategory(category)}
-            aria-pressed={activeCategory === category}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <div className="photo-grid">
-        {filteredPhotos.map((photo) => (
-          <figure className="photo-item" key={photo.title}>
-            <MediaVisual
-              src={photo.src}
-              alt={photo.title}
-              className="photo-media"
-              kind="photo"
-              variant={photo.visual}
-              width="800"
-              height="600"
-            />
-            <figcaption>
-              <strong>{photo.title}</strong>
-              <span>{photo.caption}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function TravelLog() {
-  const [openPlaces, setOpenPlaces] = useState({});
-
-  const togglePlace = (place) => {
-    setOpenPlaces((current) => ({
-      ...current,
-      [place]: !current[place]
-    }));
-  };
-
-  return (
-    <Section id="travel" label="Travel Log" title="旅行の記録">
-      <div className="text-block section-intro">
-        <p>
-          旅行では、場所そのものだけでなく、移動中に見た景色や、その土地で感じた空気感を大切にしています。
-          海外研修や国内旅行の記録を、写真と短い文章でまとめています。
-        </p>
-      </div>
-
-      <div className="travel-list">
-        {travels.map((travel) => {
-          const isOpen = openPlaces[travel.place];
-
-          return (
-            <article className="travel-item" key={travel.place}>
-              <div className="travel-meta">
-                <p>{travel.date}</p>
-                <h3>{travel.place}</h3>
-              </div>
-
-              <div className="travel-content">
-                <p>{travel.summary}</p>
-
-                <div className="travel-images">
-                  {travel.images.map((image, index) => (
-                    <MediaVisual
-                      key={`${travel.place}-${index}`}
-                      src={image.src}
-                      alt={image.alt}
-                      className="travel-media"
-                      kind="travel"
-                      variant={image.visual}
-                      width="960"
-                      height="600"
-                    />
-                  ))}
-                </div>
-
-                {isOpen && <p className="travel-detail">{travel.detail}</p>}
-
-                <button
-                  className="read-more"
-                  type="button"
-                  onClick={() => togglePlace(travel.place)}
-                >
-                  {isOpen ? "閉じる" : "詳しく見る"}
-                </button>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-    </Section>
-  );
-}
-
 function Hobbies() {
   return (
     <Section id="hobbies" label="Hobbies" title="趣味">
@@ -657,24 +490,6 @@ function PublicLinks() {
           </article>
         ))}
       </div>
-    </Section>
-  );
-}
-
-function Backlog() {
-  return (
-    <Section id="backlog" label="Backlog" title="追加したい情報">
-      <div className="text-block section-intro">
-        <p>
-          ChatGPTの会話履歴など、現在この環境から直接参照できない情報も含め、
-          今後ポートフォリオに追加すると説得力が上がる内容を整理しました。
-        </p>
-      </div>
-      <ul className="backlog-list">
-        {backlogItems.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
     </Section>
   );
 }
